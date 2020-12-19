@@ -1,14 +1,9 @@
 import {IProps} from "./types";
 
-interface IName {
-  firstName: string
-  lastName: string
-}
-
 interface IUserProps extends IProps {
   picture: string
   age: number
-  name: IName
+  fullName: string
   gender: string
   company: string
   email: string
@@ -24,7 +19,7 @@ export class User implements IUserProps {
   private readonly _isActive: boolean
   private readonly _picture: string
   private readonly _age: number
-  private readonly _name: IName
+  private readonly _fullName: string
   private readonly _gender: string
   private readonly _company: string
   private readonly _email: string
@@ -39,7 +34,7 @@ export class User implements IUserProps {
     this._isActive = props.isActive
     this._picture = props.picture
     this._age = props.age
-    this._name = props.name
+    this._fullName = props.fullName
     this._gender = props.gender
     this._company = props.company
     this._email = props.email
@@ -70,8 +65,8 @@ export class User implements IUserProps {
     return this._age
   }
 
-  get name(): IName {
-    return this._name
+  get fullName(): string {
+    return this._fullName
   }
 
   get gender(): string {

@@ -1,5 +1,6 @@
 import {AppBar, makeStyles, Toolbar} from '@material-ui/core'
 import React from 'react'
+import { ListItem } from './ListItem'
 import {SearchBox} from './SearchBox'
 
 const useStyles = makeStyles(() => ({
@@ -8,6 +9,9 @@ const useStyles = makeStyles(() => ({
   },
   image: {
     paddingRight:20
+  },
+  content: {
+    margin: 15
   }
 }))
 
@@ -17,12 +21,15 @@ const App = () => {
 
   return (
     <>
-      <AppBar position="static" classes={{root: classes.root}}>
+      <AppBar position="sticky" classes={{root: classes.root}}>
         <Toolbar>
           <img className={classes.image} src="/images/simetrik_main_logo.svg" alt="simetrik_main_logo"/>
           <SearchBox/>
         </Toolbar>
       </AppBar>
+      <div className={classes.content}>
+        <ListItem/>
+      </div>
     </>
   )
 }

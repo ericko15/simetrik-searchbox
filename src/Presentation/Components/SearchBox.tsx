@@ -19,7 +19,7 @@ export const SearchBox = () => {
         classes={{root: classes.root}}
         size="small"
         fullWidth
-        placeholder=""
+        placeholder="Buscar"
         InputProps={{
           endAdornment: (
             <InputAdornment className={classes.icon} position="end">
