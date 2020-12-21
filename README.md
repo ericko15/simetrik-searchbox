@@ -44,3 +44,31 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Respuestas
+
+1. ¿Por qué no debería usar la librería JQuery, si estoy usando ReactJS?
+  * R: No es recomendable usar JQuery junto con react dado que JQuery modifica directamente el dom y ReactJS usa un modelo de DOM virtual el cual copia el DOM y lo modifica solo cuando es necesario
+
+2. ¿Por qué usarías Hooks de las nuevas versiones de ReactJS, en lugar de class component? 
+  * R: Porque ayuda a  aislar y compartir lógica que sea común para 1 o más componentes.
+
+3. ¿Que es un archivo JSX?
+  * R: Son los archivos usados en react, produce elementos de react los cuales son muy similares a html pero con todo el poder de javascript.
+
+4. ¿Qué diferencia hay entre una function y una arrow function de Javascript?
+  * R: La diferencia esta en el scope dentro de esta misma, en las function el scope solo es el que tiene al iniciar su ejecución, mientras que el de la arrow function tiene un scope compartido con quien lo llama
+
+5. ¿Qué es Redux y cómo nos ayuda en los proyectos?
+  * R: Redux es una librería para el manejo de estados en la aplicación, está inspirada en flux la cual es una arquitectura para la gestión del flujo de datos.
+  * Nos ayuda a ese manejo del estado que a medida que el proyecto crece se vuelve más y más complejo de manejar y de hacer seguimiento.
+
+6. ¿Por qué usuarios pruebas unitarias en tu código?
+  * Para la verificación de la funcionalidad dentro de la aplicación.
+  * Para diseñar mi aplicación.
+
+7. ¿Quá nos permite hacer la siguiente declaración?
+  ``` 
+  const anyFunction = (param_1) => (param_2) => param_1 + param_2
+  ```
+  * R: anyFunction es una función que recibe 1 parámetro y devuelve una función que recibe otro parámetro y que al ejecutarse devuelve el resultado de la suma de los parámetros de ambas funciones  
