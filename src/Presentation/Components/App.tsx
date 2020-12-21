@@ -1,37 +1,13 @@
-import {AppBar, makeStyles, Toolbar} from '@material-ui/core'
 import React from 'react'
-import { ListItem } from './ListItem'
-import {SearchBox} from './SearchBox'
+import {Provider} from "react-redux";
+import {store} from "../store/store";
+import {HomePage} from "../Pages/HomePage";
 
-const useStyles = makeStyles(() => ({
-  root: {
-    backgroundColor: '#FFF'
-  },
-  image: {
-    paddingRight:20
-  },
-  content: {
-    margin: 15
-  }
-}))
 
-const App = () => {
-
-  const classes = useStyles()
-
-  return (
-    <>
-      <AppBar position="sticky" classes={{root: classes.root}}>
-        <Toolbar>
-          <img className={classes.image} src="/images/simetrik_main_logo.svg" alt="simetrik_main_logo"/>
-          <SearchBox/>
-        </Toolbar>
-      </AppBar>
-      <div className={classes.content}>
-        <ListItem/>
-      </div>
-    </>
-  )
-}
+const App = () => (
+  <Provider store={store}>
+    <HomePage/>
+  </Provider>
+)
 
 export default App;
