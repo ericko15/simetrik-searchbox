@@ -1,9 +1,10 @@
-import {AppBar, makeStyles, Toolbar} from "@material-ui/core";
+import {AppBar, CircularProgress, makeStyles, Toolbar, Typography} from "@material-ui/core";
 import {SearchBox} from "../Components/SearchBox";
 import {ListItem} from "../Components/ListItem";
 import React from "react";
 import {useDispatch} from "react-redux";
 import {search} from "../store/modules/search.actions";
+import {useSelector} from "../store/types";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -13,14 +14,15 @@ const useStyles = makeStyles(() => ({
     paddingRight:20
   },
   content: {
-    margin: 15
+    margin: 15,
+    textAlign: ({exits}:any) => !exits ? 'center' : 'initial'
   }
 }))
 
 export const HomePage = () => {
-
   const dispatch = useDispatch()
-  const classes = useStyles()
+  const items = useSelector(({search}) => search.result)
+  const classes = useStyles({exits: items.length > 0})
 
   const handleSearch = (text: string) => {
     dispatch(search(text))
@@ -34,7 +36,17 @@ export const HomePage = () => {
         </Toolbar>
       </AppBar>
       <div className={classes.content}>
-        <ListItem/>
+        {items.length === 0 && (
+          <>
+            <Typography variant="subtitle1">
+              Sin datos encontrados
+            </Typography>
+            <Typography variant="subtitle1" >
+              Escriba una consulta para empezar
+            </Typography>
+          </>
+        )}
+        {items.length > 0 && <ListItem items={items}/>}
       </div>
     </>
   )

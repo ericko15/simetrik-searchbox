@@ -16,10 +16,9 @@ interface IProps {
   name: string
   age: number
   isActive: boolean
-  description: string
   tags: string[]
   company: string
-  genre: string
+  gender: string
   email: string
   phone: string
   address: string
@@ -52,7 +51,7 @@ export const UserCard: FC<IProps> = (props) => {
   const classes = useStyles()
   return (
     <Card elevation={2}>
-      <CardHeader avatar={<Avatar>A</Avatar>} title={props.name} subheader={`${props.age} años, ${props.genre}`}/>
+      <CardHeader avatar={<Avatar>A</Avatar>} title={props.name} subheader={`${props.age} años, ${props.gender}`}/>
       <CardContent>
         <Grid container spacing={2} direction="column">
           <Grid item classes={{root: classes.text}}>
@@ -85,15 +84,6 @@ export const UserCard: FC<IProps> = (props) => {
               </Grid>
             </Grid>
           )}
-
-          <Grid item>
-            <Typography variant="button">
-              Descripción
-            </Typography>
-            <Typography variant="subtitle1" className={classes.description}>
-              {props.description}
-            </Typography>
-          </Grid>
         </Grid>
       </CardContent>
       <CardActions>

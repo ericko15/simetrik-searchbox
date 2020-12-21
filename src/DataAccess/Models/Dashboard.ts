@@ -1,4 +1,5 @@
 import {IProps, ITimestamp} from "./types";
+import {Model} from "./Model";
 
 interface IVisualType {
   name: string
@@ -18,7 +19,7 @@ interface IDashboardProps extends IProps {
   tags: string[]
 }
 
-export class Dashboard implements IDashboardProps {
+export class Dashboard extends Model implements IDashboardProps {
   private readonly _id: string
   private readonly _index: number
   private readonly _isActive: boolean
@@ -29,7 +30,8 @@ export class Dashboard implements IDashboardProps {
   private readonly _description: string
   private readonly _tags: string[]
 
-  private constructor(props: IDashboardProps) {
+  constructor(props: IDashboardProps) {
+    super()
     this._id = props.id
     this._index = props.index
     this._isActive = props.isActive

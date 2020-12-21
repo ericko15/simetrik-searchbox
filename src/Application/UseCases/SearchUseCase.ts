@@ -9,8 +9,7 @@ export class SearchUseCase {
   }
 
   async execute(searchText: string) {
-    const result = await this._searchService.search(searchText)
-    return result
+    return await this._searchService.search(searchText)
   }
 
 }

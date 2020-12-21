@@ -1,4 +1,5 @@
 import {IProps, ITimestamp} from "./types";
+import {Model} from "./Model";
 
 interface ISourceProps extends IProps {
   name: string
@@ -8,7 +9,7 @@ interface ISourceProps extends IProps {
   tags: string[]
 }
 
-export class Source implements ISourceProps {
+export class Source extends Model implements ISourceProps {
   private readonly _id: string
   private readonly _index: number
   private readonly _isActive: boolean
@@ -19,6 +20,7 @@ export class Source implements ISourceProps {
   private readonly _tags: string[]
 
   private constructor(props: ISourceProps) {
+    super()
     this._id = props.id
     this._index = props.index
     this._isActive = props.isActive

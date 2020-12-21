@@ -1,4 +1,5 @@
 import {IProps, ITimestamp} from "./types";
+import {Model} from "./Model";
 
 interface IConciliationProps extends IProps {
   conciliationName: string
@@ -10,7 +11,7 @@ interface IConciliationProps extends IProps {
   tags: string[]
 }
 
-export class Conciliation implements IConciliationProps {
+export class Conciliation extends Model implements IConciliationProps {
   private readonly _id: string
   private readonly _index: number
   private readonly _isActive: boolean
@@ -23,6 +24,7 @@ export class Conciliation implements IConciliationProps {
   private readonly _tags: string[]
 
   private constructor(props: IConciliationProps) {
+    super()
     this._id = props.id
     this._index = props.index
     this._isActive = props.isActive

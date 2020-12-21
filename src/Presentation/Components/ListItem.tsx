@@ -3,68 +3,72 @@ import {ConciliationCard} from "./Cards/ConciliationCard";
 import {DashboardCard} from "./Cards/DashboardCard";
 import {SourceCard} from "./Cards/SourceCard";
 import {UserCard} from "./Cards/UserCard";
+import {Dashboard} from "../../DataAccess/Models/Dashboard";
+import {Conciliation} from "../../DataAccess/Models/Conciliation";
+import {Source} from "../../DataAccess/Models/Source";
+import {User} from "../../DataAccess/Models/User";
+import {FC} from "react";
 
-export const ListItem = () => {
+interface IProps {
+  items: any[]
+}
+
+export const ListItem: FC<IProps> = ({items}) => {
+
+  const Card = (item) => {
+    if (item instanceof Dashboard) {
+      return <DashboardCard
+        isActive={item.isActive}
+        name={item.dashboardName}
+        description={item.description}
+        tags={item.tags}
+      />
+    }
+    if (item instanceof Source) {
+      return <SourceCard
+        company={item.company}
+        isActive={item.isActive}
+        name={item.name}
+        description={item.description}
+        tags={item.tags}
+      />
+    }
+    if (item instanceof Conciliation) {
+      return <ConciliationCard
+        name={item.conciliationName}
+        sourceA={item.sourceA}
+        sourceB={item.sourceB}
+        balance={item.balance}
+        isActive={item.isActive}
+        description={item.description}
+        tags={item.tags}
+      />
+    }
+    if (item instanceof User) {
+      return <UserCard
+        phone={item.phone}
+        email={item.email}
+        address={item.address}
+        age={item.age}
+        gender={item.gender}
+        tags={item.tags}
+        company={item.company}
+        isActive={item.isActive}
+        name={item.fullName}
+      />
+    }
+    return null
+  }
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6} md={6} lg={4}>
-        <ConciliationCard
-          tags={['asdasd']}
-          isActive={true}
-          balance="$3,116.93"
-          name="sit"
-          sourceA="sunt"
-          sourceB="in"
-          description="Ullamco elit consectetur proident adipisicing commodo laboris ea tempor excepteur anim ex proident
-              cupidatat. Incididunt est velit consectetur duis aliquip laboris in ex dolor tempor velit aliqua do
-              veniam. Consequat ut incididunt consequat pariatur aliquip ex nulla et qui excepteur minim commodo
-              exercitation veniam. Nulla eu cupidatat proident magna velit ad pariatur culpa et nostrud enim cillum
-              dolor. Fugiat nulla eu fugiat cupidatat laboris nisi officia consectetur veniam qui occaecat."
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={6} lg={4}>
-        <DashboardCard
-          tags={['asdasd']}
-          isActive={true}
-          name="sit"
-          description="Ullamco elit consectetur proident adipisicing commodo laboris ea tempor excepteur anim ex proident
-              cupidatat. Incididunt est velit consectetur duis aliquip laboris in ex dolor tempor velit aliqua do
-              veniam. Consequat ut incididunt consequat pariatur aliquip ex nulla et qui excepteur minim commodo
-              exercitation veniam. Nulla eu cupidatat proident magna velit ad pariatur culpa et nostrud enim cillum
-              dolor. Fugiat nulla eu fugiat cupidatat laboris nisi officia consectetur veniam qui occaecat."
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={6} lg={4}>
-        <SourceCard
-          company="COMPANY"
-          tags={['asdasd']}
-          isActive={true}
-          name="sit"
-          description="Ullamco elit consectetur proident adipisicing commodo laboris ea tempor excepteur anim ex proident
-              cupidatat. Incididunt est velit consectetur duis aliquip laboris in ex dolor tempor velit aliqua do
-              veniam. Consequat ut incididunt consequat pariatur aliquip ex nulla et qui excepteur minim commodo
-              exercitation veniam. Nulla eu cupidatat proident magna velit ad pariatur culpa et nostrud enim cillum
-              dolor. Fugiat nulla eu fugiat cupidatat laboris nisi officia consectetur veniam qui occaecat."
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={6} lg={4}>
-        <UserCard
-          address="592 Montgomery Place, Fairview, Vermont, 3033"
-          phone="+57 (993) 557-3635"
-          email="coopergrant@rodemco.com"
-          age={32}
-          company="COMPANY"
-          genre="male"
-          tags={['asdasd']}
-          isActive={true}
-          name="Cooper Grant"
-          description="Ullamco elit consectetur proident adipisicing commodo laboris ea tempor excepteur anim ex proident
-              cupidatat. Incididunt est velit consectetur duis aliquip laboris in ex dolor tempor velit aliqua do
-              veniam. Consequat ut incididunt consequat pariatur aliquip ex nulla et qui excepteur minim commodo
-              exercitation veniam. Nulla eu cupidatat proident magna velit ad pariatur culpa et nostrud enim cillum
-              dolor. Fugiat nulla eu fugiat cupidatat laboris nisi officia consectetur veniam qui occaecat."
-        />
-      </Grid>
+      {
+        items.map((item: any) => (
+          <Grid key={item.id} item xs={12} sm={6} md={6} lg={4}>
+            {Card(item)}
+          </Grid>
+        ))
+      }
     </Grid>
   )
 }

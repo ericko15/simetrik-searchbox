@@ -1,4 +1,5 @@
 import {IProps} from "./types";
+import {Model} from "./Model";
 
 interface IUserProps extends IProps {
   picture: string
@@ -13,7 +14,7 @@ interface IUserProps extends IProps {
   tags: string[]
 }
 
-export class User implements IUserProps {
+export class User extends Model implements IUserProps {
   private readonly _id: string
   private readonly _index: number
   private readonly _isActive: boolean
@@ -29,6 +30,7 @@ export class User implements IUserProps {
   private readonly _tags: string[]
 
   private constructor(props: IUserProps) {
+    super()
     this._id = props.id
     this._index = props.index
     this._isActive = props.isActive
