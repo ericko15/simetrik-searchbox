@@ -9,7 +9,12 @@ export class SearchService {
 
   private async getData<T extends Model>(url: string, createModel: Function): Promise<T[]> {
     const data: any[] = await Json.get(url)
-    return [...data].map(value => createModel({...value, id: value._id}))
+    return [...data].map(value => {
+      if (typeof value.name !== 'string' && !!value.name) {
+        value.fullName = `${value.name.firstName} ${value.name.lastName}`
+      }
+      return createModel({...value, id: value._id})
+    })
   }
 
   private async searchByModel<T extends Model>(text: string, url: string, createModel: Function): Promise<T[]> {
